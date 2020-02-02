@@ -13,6 +13,7 @@ export class AppComponent {
 
 
   netflixData =  {} as Inetflixdata;
+  netflixDataPersist:any ;
   new_releases:any;
   netflixType:string[];
   selectedType: string = 'Movie';
@@ -39,17 +40,19 @@ export class AppComponent {
 
   getdata(){
     this.DataService.getNetflixData(this.selectedType).subscribe((data:any)=>{
+      console.log(data)
       this.netflixData = data;
+      this.netflixDataPersist = data;
       },err=>{
       alert('Issue Loading Netflix Data')}, () => {
         this.DataService.$netflixdata.emit(this.netflixData);
     });
   }
 
-  onSearch(event:any){
-      console.log(event)
-      this.searchtext = event;
-      
-      console.log('this search text')
-  }
+  // onSearch(event:any){
+  //     this.searchtext = event;
+  //     this.netflixDataPersist.data.filter((data)=>{
+
+  // })
+  // }
 }

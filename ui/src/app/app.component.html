@@ -20,14 +20,6 @@
         
     </body>
     &nbsp;
-    <div class='row'>
-        <app-type-drpdn [typeList]= 'netflixType'></app-type-drpdn>
-        <kendo-textbox-container floatingLabel="Search">
-            <textarea kendoTextArea
-                [(ngModel)]='searchtext'
-                (valueChange)="onSearch($event);">
-            </textarea>
-          </kendo-textbox-container>
-    </div>
+    <app-type-drpdn [typeList]= 'netflixType'></app-type-drpdn>
     <app-grid-layout style="padding: 50px;"></app-grid-layout>
 </div>
