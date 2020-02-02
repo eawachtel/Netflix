@@ -1,0 +1,8 @@
+<div>
+    <p style= 'color:white;'>Program Type:</p>
+    <kendo-dropdownlist style='min-width: 7vw; width:auto;'
+            [data]="typeList"
+            [(ngModel)] = "selectedType"
+            (selectionChange)="handleTypeClick($event)">
+    </kendo-dropdownlist>
+</div>
