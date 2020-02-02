@@ -25,7 +25,7 @@ export class AppComponent {
     })
   }
 
-  ngOnInit(){
+  ngOnInit(){ 
 
     this.DataService.getPageInitData().subscribe((data:any)=>{
       this.new_releases = data.new_releases;
