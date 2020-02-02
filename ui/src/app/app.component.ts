@@ -16,6 +16,7 @@ export class AppComponent {
   new_releases:any;
   netflixType:string[];
   selectedType: string = 'Movie';
+  searchtext:string;
 
   constructor(private DataService: DataService) {
     this.DataService.$handleTypeClick.subscribe((value) =>{
@@ -43,6 +44,12 @@ export class AppComponent {
       alert('Issue Loading Netflix Data')}, () => {
         this.DataService.$netflixdata.emit(this.netflixData);
     });
-  
+  }
+
+  onSearch(event:any){
+      console.log(event)
+      this.searchtext = event;
+      
+      console.log('this search text')
   }
 }

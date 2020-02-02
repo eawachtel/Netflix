@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { GridLayoutModule } from '../app/modules/grid-layout/grid-layout.module'
 import { TypeDrpdnModule } from '../app/modules/type-drpdn/type-drpdn.module'
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { TypeDrpdnModule } from '../app/modules/type-drpdn/type-drpdn.module'
     HttpClientModule,
     LayoutModule,
     GridLayoutModule,
-    TypeDrpdnModule
+    TypeDrpdnModule,
+    InputsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
