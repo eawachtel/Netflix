@@ -5,6 +5,7 @@ import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { filterBy, FilterDescriptor, CompositeFilterDescriptor } from '@progress/kendo-data-query';
 import { FilterService } from '@progress/kendo-angular-grid';
 import { DataService } from '../../core/services/data.service'
+import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 
 const flatten = filter => {
   const filters = (filter || {}).filters;
@@ -29,7 +30,10 @@ export class TableComponent implements OnInit {
   dataFiltered:any;
   pitColumns:any;
   private categoryFilter: any[] = [];
-  
+  public gridView: GridDataResult;
+  public pageSize = 10;
+  public skip = 0;
+
   constructor(private DataService: DataService, private sanitizer: DomSanitizer) {
       this.DataService.$netflixdata.subscribe((data) => {
         this.dataPersist = data.data;
@@ -47,6 +51,19 @@ export class TableComponent implements OnInit {
     field: 'title',
     dir: 'asc'
   }];
+
+public pageChange(event: PageChangeEvent): void {
+    this.skip = event.skip;
+    this.loadItems();
+}
+
+private loadItems(): void {
+   console.log(this.dataSorted.data)
+    this.gridView = {
+        data: this.dataSorted.data.slice(this.skip, this.skip + this.pageSize),
+        total: this.dataSorted.data.length
+    };
+}
   
   public sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
@@ -58,6 +75,7 @@ export class TableComponent implements OnInit {
         data: orderBy(this.dataFiltered, this.sort),
         total: this.dataFiltered.length
     };
+    this.loadItems();
   }
   
   public filterChange(filter: CompositeFilterDescriptor): void {

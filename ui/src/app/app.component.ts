@@ -18,7 +18,6 @@ export class AppComponent {
   selectedType: string = 'Movie';
 
   constructor(private DataService: DataService) {
-    console.log('running handletypeclick in const')
     this.DataService.$handleTypeClick.subscribe((value) =>{
       this.selectedType = value;
       this.getdata();

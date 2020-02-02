@@ -1,7 +1,11 @@
 
 <kendo-grid 
 id='raceHubGridId'
-    [data]="dataSorted"
+    [data]="gridView"
+    [pageSize]="pageSize"
+    [skip]="skip"
+    [pageable]="true"
+    (pageChange)="pageChange($event)"
     [height]="550"
     [sortable]="{
         allowUnsort: allowUnsort,
