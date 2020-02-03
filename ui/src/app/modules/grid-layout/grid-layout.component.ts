@@ -28,7 +28,7 @@ export class GridLayoutComponent implements OnInit {
   dataPersist: any;
   dataSorted: any;
   dataFiltered:any;
-  pitColumns:any;
+  column_names:string[]
   private categoryFilter: any[] = [];
   public gridView: GridDataResult;
   public pageSize = 10;
@@ -37,7 +37,7 @@ export class GridLayoutComponent implements OnInit {
   constructor(private DataService: DataService, private sanitizer: DomSanitizer) {
       this.DataService.$netflixdata.subscribe((data) => {
         this.dataPersist = data.data;
-        this.pitColumns = data.column_names
+        this.column_names = data.column_names
         this.dataFiltered = this.dataPersist;
         this.loaddata();
       })
@@ -58,8 +58,7 @@ public pageChange(event: PageChangeEvent): void {
 }
 
 private loadItems(): void {
-   console.log(this.dataSorted.data)
-    this.gridView = {
+   this.gridView = {
         data: this.dataSorted.data.slice(this.skip, this.skip + this.pageSize),
         total: this.dataSorted.data.length
     };
@@ -120,16 +119,5 @@ private loadItems(): void {
     }
   }
 
-  public pitChange(values: any[], field: any){
-    var result= this.dataSorted.data.filter((item)=>item[field]===values[0])
-  }
-
-  pitFilters(filter: any, name:any) {
-    this.categoryFilter.splice(
-      0, this.categoryFilter.length,
-      ...flatten(filter).map(({ value }) => value)
-    );
-    return this.categoryFilter;
-  }
-
+  
 }

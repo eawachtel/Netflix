@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../app/core/services/data.service'
-import { Inetflixdata, Inetflixdatalist } from '../app/core/interface/Inetflixdata'
+import { Inetflixdatalist } from '../app/core/interface/Inetflixdata'
+import { Ipageinitdatalist } from '../app/core/interface/Ipageinitdatalist'
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,8 @@ import { Inetflixdata, Inetflixdatalist } from '../app/core/interface/Inetflixda
 export class AppComponent {
 
 
-  netflixData =  {} as Inetflixdata;
-  netflixDataPersist:any ;
-  new_releases:any;
+  netflixData =  {} as Inetflixdatalist;
+  new_releases:string[];
   netflixType:string[];
   selectedType: string = 'Movie';
   searchtext:string;
@@ -27,8 +27,8 @@ export class AppComponent {
   }
 
   ngOnInit(){ 
-
-    this.DataService.getPageInitData().subscribe((data:any)=>{
+ 
+    this.DataService.getPageInitData().subscribe((data:Ipageinitdatalist)=>{
       this.new_releases = data.new_releases;
       this.netflixType = data.netflixtypes;
       this.DataService.$netflixtypes.emit(this.netflixType);
@@ -39,20 +39,11 @@ export class AppComponent {
   
 
   getdata(){
-    this.DataService.getNetflixData(this.selectedType).subscribe((data:any)=>{
-      console.log(data)
+    this.DataService.getNetflixData(this.selectedType).subscribe((data:Inetflixdatalist)=>{
       this.netflixData = data;
-      this.netflixDataPersist = data;
-      },err=>{
+    },err=>{
       alert('Issue Loading Netflix Data')}, () => {
         this.DataService.$netflixdata.emit(this.netflixData);
     });
   }
-
-  // onSearch(event:any){
-  //     this.searchtext = event;
-  //     this.netflixDataPersist.data.filter((data)=>{
-
-  // })
-  // }
 }

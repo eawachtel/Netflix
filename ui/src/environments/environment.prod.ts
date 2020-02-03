@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  appUrl: "https://racehubapidev.prattmillerse.com/api/"
+  appUrl: "http://3.133.97.212:81/"
 };

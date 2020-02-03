@@ -6,7 +6,7 @@ import { Subject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class DataService { 
 
   $netflixdata = new EventEmitter<any>();
   $netflixtypes = new EventEmitter<any>();

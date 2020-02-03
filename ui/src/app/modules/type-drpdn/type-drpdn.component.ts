@@ -17,7 +17,6 @@ export class TypeDrpdnComponent implements OnInit {
   }
 
   handleTypeClick(event:any){
-      console.log('running handletypeclick')
       this.DataService.$handleTypeClick.emit(event);
   }
 }

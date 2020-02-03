@@ -1,14 +1,13 @@
-<kendo-tabstrip>
-    <kendo-tabstrip-tab [title]="'Grid'" [selected]="true">
-        <ng-template kendoTabContent> 
-            <kendo-grid 
+
+<div class="container-fluid" style="background-color: black;">
+<kendo-grid 
 
     [data]="gridView"
     [pageSize]="pageSize"
     [skip]="skip"
     [pageable]="true"
     (pageChange)="pageChange($event)"
-    [height]="550"
+    [height]="600"
     [sortable]="{
         allowUnsort: allowUnsort,
         mode: 'multiple'
@@ -18,11 +17,10 @@
     filterable="menu"
     [filter]="filter"
     (filterChange)="filterChange($event)">
-    <kendo-grid-column *ngFor="let column of pitColumns"
+    <kendo-grid-column *ngFor="let column of column_names"
         class="no-padding"
         field={{column.field}}
         title={{column.title}}>
-        <!-- [filterable]="column.filter" -->
         <ng-template kendoGridCellTemplate let-dataItem>
             <span class="whole-cell">
                 {{ dataItem[column.field] }} 
@@ -30,11 +28,6 @@
         </ng-template>
     </kendo-grid-column>
   </kendo-grid>
-        </ng-template>
-    </kendo-tabstrip-tab>
-    <kendo-tabstrip-tab [title]="'Plots'">
-        <ng-template kendoTabContent>
-            
-        </ng-template>
-    </kendo-tabstrip-tab>
-</kendo-tabstrip>
+</div>
+       
+    
